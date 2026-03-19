@@ -1,84 +1,94 @@
-=== WooCommerce Margin Calculator Pro ===
-Contributors: sascom
-Tags: woocommerce, margin, profit, cost, calculator
-Requires at least: 5.8
-Tested up to: 6.7
-Requires PHP: 7.4
-Stable tag: 1.1.0
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+# Margin Calculator Pro for WooCommerce
 
-Advanced margin calculation for WooCommerce: Quick Edit, per-category thresholds, order profit, CSV import/export, dashboard widget.
+![WordPress](https://img.shields.io/badge/WordPress-5.8%2B-blue)
+![WooCommerce](https://img.shields.io/badge/WooCommerce-6.0%2B-purple)
+![PHP](https://img.shields.io/badge/PHP-7.4%2B-green)
+![License](https://img.shields.io/badge/License-GPL%20v2-yellow)
 
-== Description ==
+Advanced margin calculation and management for WooCommerce products with Quick Edit, per-category thresholds, order profit tracking, CSV import/export and dashboard widget.
 
-WooCommerce Margin Calculator Pro is a professional plugin for managing purchase prices and calculating product margins in your WooCommerce store.
+---
 
-= Main features =
+## ✨ Features
 
-* **Quick Edit** - Edit purchase prices directly from the product list
-* **Margin calculation** - Automatic margin calculation for each product
-* **Margin colors** - Visual indicators (green / orange / red / pink)
-* **Per-category thresholds** - Individual margin thresholds for each category
-* **Variation support** - Each variation has its own purchase price and margin
-* **Order margin** - See profit and margin on every order page + orders list column
-* **Unprofitable order warning** - Alert when an order generates negative profit
-* **CSV Import** - Bulk import purchase prices via CSV (by SKU or product ID)
-* **CSV Export** - Export all purchase prices to CSV
-* **Statistics** - Average margin and product overview
-* **Dashboard widget** - At-a-glance margin overview on the WordPress dashboard
-* **HPOS compatible** - Fully compatible with WooCommerce High-Performance Order Storage
+- **Quick Edit** — Edit purchase prices directly from the product list
+- **Margin colors** — Visual indicators (green / orange / red) based on thresholds
+- **Per-category thresholds** — Individual margin thresholds per product category
+- **Variation support** — Each variation has its own purchase price and margin
+- **Order margin** — Profit and margin displayed on every order page and orders list
+- **Unprofitable order warning** — Alert when an order generates negative profit
+- **CSV Import** — Bulk import purchase prices via CSV (by SKU or product ID)
+- **CSV Export** — Export all purchase prices to CSV
+- **Dashboard widget** — Top and lowest margins at a glance
+- **Statistics** — Average margin and product overview
+- **HPOS compatible** — Fully compatible with WooCommerce High-Performance Order Storage
 
-= Translations included =
+---
 
-* 🇬🇧 English
-* 🇵🇱 Polish (pl_PL)
-* 🇩🇪 German (de_DE)
-* 🇫🇷 French (fr_FR)
-* 🇪🇸 Spanish (es_ES)
+## 🌍 Translations
 
-= Margin formula =
+| Language | Code |
+|---|---|
+| 🇬🇧 English | default |
+| 🇵🇱 Polish | pl_PL |
+| 🇩🇪 German | de_DE |
+| 🇫🇷 French | fr_FR |
+| 🇪🇸 Spanish | es_ES |
 
-`Margin % = (Sale Price Net - Purchase Price Net) / Sale Price Net × 100`
+---
 
-== Installation ==
+## 📐 Margin formula
 
-1. Upload the `margin-calculator-pro` folder to `/wp-content/plugins/`
-2. Activate the plugin in the WordPress admin panel
-3. Go to WooCommerce → Margin Calculator
-4. Configure margin thresholds and VAT rate
+```
+Margin % = (Sale Price Net - Purchase Price Net) / Sale Price Net × 100
+```
 
-== Frequently Asked Questions ==
+Margin is calculated as profit share of net sale price (not markup).
 
-= Does the plugin work with variable products? =
-Yes! Each variation can have its own purchase price and margin.
+---
 
-= How do I import purchase prices in bulk? =
-Go to WooCommerce → Margin Calculator → Import/Export section. Upload a CSV with columns: sku, purchase_price (or product_id, purchase_price).
+## 🚀 Installation
 
-= Is it HPOS compatible? =
-Yes, fully compatible with WooCommerce High-Performance Order Storage.
+1. Download the latest release ZIP from [Releases](../../releases)
+2. Go to WordPress Admin → Plugins → Add New → Upload Plugin
+3. Upload the ZIP file and activate
+4. Go to WooCommerce → Margin Calculator
+5. Configure margin thresholds and VAT rate
 
-= What languages are supported? =
-English, Polish, German, French and Spanish are included. You can add more translations via Poedit.
+---
 
-== Changelog ==
+## 📋 Requirements
 
-= 1.1.0 - 2025-03-19 =
-* NEW: Order margin — profit/margin displayed on order edit page and orders list
-* NEW: Unprofitable order warning
-* NEW: CSV import of purchase prices (by SKU or product ID)
-* NEW: CSV export of all purchase prices
-* NEW: HPOS (High-Performance Order Storage) compatibility
-* NEW: Translations: Polish, German, French, Spanish
-* Security: all SQL queries use $wpdb->prepare()
-* Security: capability checks on all admin actions
-* All strings i18n ready
+- WordPress 5.8+
+- WooCommerce 6.0+
+- PHP 7.4+
 
-= 1.0.0 - 2024-10-13 =
-* Initial release
+---
 
-== Upgrade Notice ==
+## 📁 CSV Import format
 
-= 1.1.0 =
-Major update: order margin, CSV import/export, HPOS support, 4 languages. Upgrade recommended.
+```csv
+sku,purchase_price
+PROD-001,12.50
+PROD-002,8.00
+```
+
+Or by product ID:
+
+```csv
+product_id,purchase_price
+123,12.50
+456,8.00
+```
+
+---
+
+## 📄 License
+
+[GPL v2 or later](LICENSE)
+
+---
+
+## 👤 Author
+
+**Sascom** — [sascom.pl](https://sascom.pl)
