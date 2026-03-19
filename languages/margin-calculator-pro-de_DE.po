@@ -1,0 +1,237 @@
+# German translation for WooCommerce Margin Calculator Pro
+# Copyright (C) 2025 Sascom
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce Margin Calculator Pro 1.1.0\n"
+"PO-Revision-Date: 2025-03-19T00:00:00+00:00\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: margin-calculator-pro\n"
+
+msgid "WooCommerce Margin Calculator Pro"
+msgstr "WooCommerce Margenrechner Pro"
+
+msgid "requires WooCommerce to be installed and active!"
+msgstr "erfordert, dass WooCommerce installiert und aktiv ist!"
+
+msgid "Margin Calculator"
+msgstr "Margenrechner"
+
+msgid "Purchase price (net)"
+msgstr "Einkaufspreis (netto)"
+
+msgid "Product purchase price excluding VAT"
+msgstr "Einkaufspreis des Produkts ohne MwSt."
+
+msgid "Purchase Price"
+msgstr "Einkaufspreis"
+
+msgid "Margin"
+msgstr "Marge"
+
+msgid "net"
+msgstr "netto"
+
+msgid "Margin:"
+msgstr "Marge:"
+
+msgid "Margin Calculator - Settings"
+msgstr "Margenrechner - Einstellungen"
+
+msgid "Global margin thresholds"
+msgstr "Globale Margenschwellen"
+
+msgid "High margin (green)"
+msgstr "Hohe Marge (grün)"
+
+msgid "Products with margin >= this value will be shown in green"
+msgstr "Produkte mit Marge >= diesem Wert werden grün angezeigt"
+
+msgid "Medium margin (orange)"
+msgstr "Mittlere Marge (orange)"
+
+msgid "Products with margin >= this value will be shown in orange"
+msgstr "Produkte mit Marge >= diesem Wert werden orange angezeigt"
+
+msgid "VAT rate"
+msgstr "MwSt.-Satz"
+
+msgid "Select VAT rate for calculations"
+msgstr "MwSt.-Satz für Berechnungen auswählen"
+
+msgid "Per-category margin thresholds"
+msgstr "Margenschwellen pro Kategorie"
+
+msgid "Set custom thresholds per product category (optional)"
+msgstr "Individuelle Schwellenwerte pro Produktkategorie festlegen (optional)"
+
+msgid "Category"
+msgstr "Kategorie"
+
+msgid "High margin (%)"
+msgstr "Hohe Marge (%)"
+
+msgid "Medium margin (%)"
+msgstr "Mittlere Marge (%)"
+
+msgid "Leave empty to use global thresholds"
+msgstr "Leer lassen, um globale Schwellenwerte zu verwenden"
+
+msgid "Save settings"
+msgstr "Einstellungen speichern"
+
+msgid "High margin must be greater than medium margin!"
+msgstr "Die hohe Marge muss größer als die mittlere Marge sein!"
+
+msgid "Category \"%s\": High margin must be greater than medium margin"
+msgstr "Kategorie \"%s\": Hohe Marge muss größer als mittlere Marge sein"
+
+msgid "Warnings:"
+msgstr "Warnungen:"
+
+msgid "Success!"
+msgstr "Erfolg!"
+
+msgid "Settings saved."
+msgstr "Einstellungen gespeichert."
+
+msgid "Statistics"
+msgstr "Statistiken"
+
+msgid "Margin formula"
+msgstr "Margenformel"
+
+msgid "Margin calculated as profit share of net sale price (not markup)."
+msgstr "Marge berechnet als Gewinnanteil am Netto-Verkaufspreis (kein Aufschlag)."
+
+msgid "All products"
+msgstr "Alle Produkte"
+
+msgid "Products with purchase price"
+msgstr "Produkte mit Einkaufspreis"
+
+msgid "Average margin"
+msgstr "Durchschnittliche Marge"
+
+msgid "No products with purchase price found."
+msgstr "Keine Produkte mit Einkaufspreis gefunden."
+
+msgid "Product Margins"
+msgstr "Produktmargen"
+
+msgid "With purchase price"
+msgstr "Mit Einkaufspreis"
+
+msgid "Lowest"
+msgstr "Niedrigste"
+
+msgid "Highest"
+msgstr "Höchste"
+
+msgid "Lowest margins (TOP 10)"
+msgstr "Niedrigste Margen (TOP 10)"
+
+msgid "Highest margins (TOP 10)"
+msgstr "Höchste Margen (TOP 10)"
+
+msgid "Product"
+msgstr "Produkt"
+
+msgid "Purchase"
+msgstr "Einkauf"
+
+msgid "Sale"
+msgstr "Verkauf"
+
+msgid "Products WITHOUT purchase price"
+msgstr "Produkte OHNE Einkaufspreis"
+
+msgid "SKU"
+msgstr "SKU"
+
+msgid "Price"
+msgstr "Preis"
+
+msgid "Show all (%d)"
+msgstr "Alle anzeigen (%d)"
+
+msgid "Collapse list"
+msgstr "Liste einklappen"
+
+msgid "You do not have permission to manage these settings."
+msgstr "Sie haben keine Berechtigung, diese Einstellungen zu verwalten."
+
+msgid "Unauthorized"
+msgstr "Nicht autorisiert"
+
+msgid "Margin summary"
+msgstr "Margenzusammenfassung"
+
+msgid "Net revenue"
+msgstr "Nettoumsatz"
+
+msgid "Total cost"
+msgstr "Gesamtkosten"
+
+msgid "Profit"
+msgstr "Gewinn"
+
+msgid "Warning: This order is unprofitable!"
+msgstr "Warnung: Diese Bestellung ist unrentabel!"
+
+msgid "Unprofitable order!"
+msgstr "Unrentable Bestellung!"
+
+msgid "Import / Export purchase prices (CSV)"
+msgstr "Import / Export Einkaufspreise (CSV)"
+
+msgid "Export"
+msgstr "Export"
+
+msgid "Download all products with their purchase prices as a CSV file."
+msgstr "Alle Produkte mit Einkaufspreisen als CSV-Datei herunterladen."
+
+msgid "Export CSV"
+msgstr "CSV exportieren"
+
+msgid "Import"
+msgstr "Import"
+
+msgid "Upload a CSV file with columns:"
+msgstr "CSV-Datei mit Spalten hochladen:"
+
+msgid "or"
+msgstr "oder"
+
+msgid "Import CSV"
+msgstr "CSV importieren"
+
+msgid "Import results"
+msgstr "Importergebnisse"
+
+msgid "Please select a CSV file."
+msgstr "Bitte wählen Sie eine CSV-Datei aus."
+
+msgid "Importing..."
+msgstr "Importieren..."
+
+msgid "Connection error."
+msgstr "Verbindungsfehler."
+
+msgid "No data received."
+msgstr "Keine Daten empfangen."
+
+msgid "Column \"purchase_price\" not found in CSV."
+msgstr "Spalte \"purchase_price\" in der CSV nicht gefunden."
+
+msgid "Column \"sku\" or \"product_id\" not found in CSV."
+msgstr "Spalte \"sku\" oder \"product_id\" in der CSV nicht gefunden."
+
+msgid "Done: %1$d updated, %2$d skipped."
+msgstr "Fertig: %1$d aktualisiert, %2$d übersprungen."
+
+msgid "Security check failed."
+msgstr "Sicherheitsprüfung fehlgeschlagen."

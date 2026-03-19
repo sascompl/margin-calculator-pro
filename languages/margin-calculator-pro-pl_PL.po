@@ -1,0 +1,251 @@
+# Polish translation for WooCommerce Margin Calculator Pro
+# Copyright (C) 2025 Sascom
+# This file is distributed under the same license as the plugin.
+# Translator: Sascom <info@sascom.pl>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce Margin Calculator Pro 1.1.0\n"
+"Report-Msgid-Bugs-To: info@sascom.pl\n"
+"POT-Creation-Date: 2025-03-19T00:00:00+00:00\n"
+"PO-Revision-Date: 2025-03-19T00:00:00+00:00\n"
+"Last-Translator: Sascom <info@sascom.pl>\n"
+"Language-Team: Polish\n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"X-Generator: Manual\n"
+"X-Domain: margin-calculator-pro\n"
+
+msgid "WooCommerce Margin Calculator Pro"
+msgstr "Kalkulator Marży WooCommerce Pro"
+
+msgid "requires WooCommerce to be installed and active!"
+msgstr "wymaga zainstalowanego i aktywnego WooCommerce!"
+
+msgid "Margin Calculator"
+msgstr "Kalkulator Marży"
+
+msgid "Purchase price (net)"
+msgstr "Cena zakupu (netto)"
+
+msgid "Product purchase price excluding VAT"
+msgstr "Cena zakupu produktu bez VAT"
+
+msgid "Purchase Price"
+msgstr "Cena zakupu"
+
+msgid "Margin"
+msgstr "Marża"
+
+msgid "net"
+msgstr "netto"
+
+msgid "Margin:"
+msgstr "Marża:"
+
+msgid "Margin Calculator - Settings"
+msgstr "Kalkulator Marży - Ustawienia"
+
+msgid "Global margin thresholds"
+msgstr "Globalne progi marży"
+
+msgid "High margin (green)"
+msgstr "Wysoka marża (zielony)"
+
+msgid "Products with margin >= this value will be shown in green"
+msgstr "Produkty z marżą >= tej wartości będą zielone"
+
+msgid "Medium margin (orange)"
+msgstr "Średnia marża (pomarańczowy)"
+
+msgid "Products with margin >= this value will be shown in orange"
+msgstr "Produkty z marżą >= tej wartości będą pomarańczowe"
+
+msgid "VAT rate"
+msgstr "Stawka VAT"
+
+msgid "Select VAT rate for calculations"
+msgstr "Wybierz stawkę VAT dla obliczeń"
+
+msgid "Per-category margin thresholds"
+msgstr "Progi marży dla kategorii"
+
+msgid "Set custom thresholds per product category (optional)"
+msgstr "Ustaw indywidualne progi dla każdej kategorii produktów (opcjonalne)"
+
+msgid "Category"
+msgstr "Kategoria"
+
+msgid "High margin (%)"
+msgstr "Wysoka marża (%)"
+
+msgid "Medium margin (%)"
+msgstr "Średnia marża (%)"
+
+msgid "Leave empty to use global thresholds"
+msgstr "Pozostaw puste aby użyć globalnych progów"
+
+msgid "Save settings"
+msgstr "Zapisz ustawienia"
+
+msgid "High margin must be greater than medium margin!"
+msgstr "Wysoka marża musi być większa od średniej!"
+
+#. translators: %s: category name
+msgid "Category \"%s\": High margin must be greater than medium margin"
+msgstr "Kategoria \"%s\": Wysoka marża musi być większa od średniej"
+
+msgid "Warnings:"
+msgstr "Ostrzeżenia:"
+
+msgid "Success!"
+msgstr "Sukces!"
+
+msgid "Settings saved."
+msgstr "Ustawienia zapisane."
+
+msgid "Statistics"
+msgstr "Statystyki"
+
+msgid "Margin formula"
+msgstr "Wzór marży"
+
+msgid "Margin calculated as profit share of net sale price (not markup)."
+msgstr "Marża liczona jako udział zysku w cenie sprzedaży netto (nie narzut)."
+
+msgid "All products"
+msgstr "Wszystkie produkty"
+
+msgid "Products with purchase price"
+msgstr "Produkty z ceną zakupu"
+
+msgid "Average margin"
+msgstr "Średnia marża"
+
+msgid "No products with purchase price found."
+msgstr "Brak produktów z ceną zakupu."
+
+msgid "Product Margins"
+msgstr "Marże produktów"
+
+msgid "With purchase price"
+msgstr "Z ceną zakupu"
+
+msgid "Lowest"
+msgstr "Najniższa"
+
+msgid "Highest"
+msgstr "Najwyższa"
+
+msgid "Lowest margins (TOP 10)"
+msgstr "Najniższe marże (TOP 10)"
+
+msgid "Highest margins (TOP 10)"
+msgstr "Najwyższe marże (TOP 10)"
+
+msgid "Product"
+msgstr "Produkt"
+
+msgid "Purchase"
+msgstr "Zakup"
+
+msgid "Sale"
+msgstr "Sprzedaż"
+
+msgid "Products WITHOUT purchase price"
+msgstr "Produkty BEZ ceny zakupu"
+
+msgid "SKU"
+msgstr "SKU"
+
+msgid "Price"
+msgstr "Cena"
+
+#. translators: %d: number of products
+msgid "Show all (%d)"
+msgstr "Pokaż wszystkie (%d)"
+
+msgid "Collapse list"
+msgstr "Zwiń listę"
+
+msgid "You do not have permission to manage these settings."
+msgstr "Nie masz uprawnień do zarządzania tymi ustawieniami."
+
+msgid "Unauthorized"
+msgstr "Brak uprawnień"
+
+msgid "Purchase price (net) Quick Edit"
+msgstr "Cena zakupu (netto)"
+
+msgid "Margin summary"
+msgstr "Podsumowanie marży"
+
+msgid "Net revenue"
+msgstr "Przychód netto"
+
+msgid "Total cost"
+msgstr "Łączny koszt"
+
+msgid "Profit"
+msgstr "Zysk"
+
+msgid "Warning: This order is unprofitable!"
+msgstr "Uwaga: To zamówienie jest nierentowne!"
+
+msgid "Unprofitable order!"
+msgstr "Nierentowne zamówienie!"
+
+msgid "Import / Export purchase prices (CSV)"
+msgstr "Import / Eksport cen zakupu (CSV)"
+
+msgid "Export"
+msgstr "Eksport"
+
+msgid "Download all products with their purchase prices as a CSV file."
+msgstr "Pobierz wszystkie produkty z cenami zakupu jako plik CSV."
+
+msgid "Export CSV"
+msgstr "Eksportuj CSV"
+
+msgid "Import"
+msgstr "Import"
+
+msgid "Upload a CSV file with columns:"
+msgstr "Wgraj plik CSV z kolumnami:"
+
+msgid "or"
+msgstr "lub"
+
+msgid "Import CSV"
+msgstr "Importuj CSV"
+
+msgid "Import results"
+msgstr "Wyniki importu"
+
+msgid "Please select a CSV file."
+msgstr "Wybierz plik CSV."
+
+msgid "Importing..."
+msgstr "Importowanie..."
+
+msgid "Connection error."
+msgstr "Błąd połączenia."
+
+msgid "No data received."
+msgstr "Nie otrzymano danych."
+
+msgid "Column \"purchase_price\" not found in CSV."
+msgstr "Kolumna \"purchase_price\" nie została znaleziona w pliku CSV."
+
+msgid "Column \"sku\" or \"product_id\" not found in CSV."
+msgstr "Kolumna \"sku\" lub \"product_id\" nie została znaleziona w pliku CSV."
+
+#. translators: 1: updated count, 2: skipped count
+msgid "Done: %1$d updated, %2$d skipped."
+msgstr "Gotowe: zaktualizowano %1$d, pominięto %2$d."
+
+msgid "Security check failed."
+msgstr "Weryfikacja bezpieczeństwa nie powiodła się."
