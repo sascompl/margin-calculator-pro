@@ -11,17 +11,17 @@ Advanced margin calculation and management for WooCommerce products with Quick E
 
 ## ✨ Features
 
-- **Quick Edit** — Edit purchase prices directly from the product list
-- **Margin colors** — Visual indicators (green / orange / red) based on thresholds
-- **Per-category thresholds** — Individual margin thresholds per product category
-- **Variation support** — Each variation has its own purchase price and margin
-- **Order margin** — Profit and margin displayed on every order page and orders list
-- **Unprofitable order warning** — Alert when an order generates negative profit
-- **CSV Import** — Bulk import purchase prices via CSV (by SKU or product ID)
-- **CSV Export** — Export all purchase prices to CSV
-- **Dashboard widget** — Top and lowest margins at a glance
-- **Statistics** — Average margin and product overview
-- **HPOS compatible** — Fully compatible with WooCommerce High-Performance Order Storage
+- **Quick Edit** - Edit purchase prices directly from the product list
+- **Margin colors** - Visual indicators (green / orange / red) based on thresholds
+- **Per-category thresholds** - Individual margin thresholds per product category
+- **Variation support** - Each variation has its own purchase price and margin
+- **Order margin** - Profit and margin displayed on every order page and orders list
+- **Unprofitable order warning** - Alert when an order generates negative profit
+- **CSV Import** - Bulk import purchase prices via CSV (by SKU or product ID)
+- **CSV Export** - Export all purchase prices to CSV
+- **Dashboard widget** - Top and lowest margins at a glance
+- **Statistics** - Average margin and product overview
+- **HPOS compatible** - Fully compatible with WooCommerce High-Performance Order Storage
 
 ---
 
@@ -91,4 +91,4 @@ product_id,purchase_price
 
 ## 👤 Author
 
-**Sascom** — [sascom.pl](https://sascom.pl)
+**Sascom** - [sascom.pl](https://sascom.pl)
