@@ -156,7 +156,7 @@ class WC_Margin_Calculator_Pro {
 			esc_html__( 'Margin Reports', 'margin-calculator-pro' ),
 			esc_html__( 'Margin Reports', 'margin-calculator-pro' ),
 			'manage_woocommerce',
-			'margin-reports',
+			'wcmc-margin-reports',
 			array( $this, 'reports_page' )
 		);
 	}
@@ -212,7 +212,7 @@ class WC_Margin_Calculator_Pro {
 			) );
 		}
 
-		if ( 'margin-reports' === $page ) {
+		if ( 'wcmc-margin-reports' === $page ) {
 			wp_enqueue_script( 'wcmc-reports', plugin_dir_url( __FILE__ ) . 'assets/reports.js', array( 'jquery' ), '1.0.0', true );
 			wp_localize_script( 'wcmc-reports', 'wcmc', array(
 				'ajax_url' => admin_url( 'admin-ajax.php' ),
