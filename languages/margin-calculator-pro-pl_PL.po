@@ -249,3 +249,90 @@ msgstr "Gotowe: zaktualizowano %1$d, pominięto %2$d."
 
 msgid "Security check failed."
 msgstr "Weryfikacja bezpieczeństwa nie powiodła się."
+
+msgid "Margin Reports"
+msgstr "Raporty marż"
+
+msgid "You do not have permission to view reports."
+msgstr "Nie masz uprawnień do przeglądania raportów."
+
+msgid "Date range"
+msgstr "Zakres dat"
+
+msgid "Current month"
+msgstr "Bieżący miesiąc"
+
+msgid "Previous month"
+msgstr "Poprzedni miesiąc"
+
+msgid "January"
+msgstr "Styczeń"
+
+msgid "February"
+msgstr "Luty"
+
+msgid "March"
+msgstr "Marzec"
+
+msgid "April"
+msgstr "Kwiecień"
+
+msgid "May"
+msgstr "Maj"
+
+msgid "June"
+msgstr "Czerwiec"
+
+msgid "July"
+msgstr "Lipiec"
+
+msgid "August"
+msgstr "Sierpień"
+
+msgid "September"
+msgstr "Wrzesień"
+
+msgid "October"
+msgstr "Październik"
+
+msgid "November"
+msgstr "Listopad"
+
+msgid "December"
+msgstr "Grudzień"
+
+msgid "Month"
+msgstr "Miesiąc"
+
+msgid "Year"
+msgstr "Rok"
+
+msgid "Show"
+msgstr "Pokaż"
+
+msgid "From"
+msgstr "Od"
+
+msgid "To"
+msgstr "Do"
+
+msgid "Loading report..."
+msgstr "Ładowanie raportu..."
+
+msgid "No orders found for the selected period."
+msgstr "Brak zamówień w wybranym okresie."
+
+msgid "Orders"
+msgstr "Zamówienia"
+
+msgid "Order"
+msgstr "Zamówienie"
+
+msgid "Date"
+msgstr "Data"
+
+msgid "Customer"
+msgstr "Klient"
+
+msgid "Cost"
+msgstr "Koszt"

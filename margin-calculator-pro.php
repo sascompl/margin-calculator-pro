@@ -1683,12 +1683,13 @@ class WC_Margin_Calculator_Pro {
 		}
 
 		$args = array(
-			'type'         => 'shop_order',
-			'status'       => array( 'wc-completed', 'wc-processing' ),
-			'limit'        => 500,
-			'orderby'      => 'date',
-			'order'        => 'DESC',
-			'date_created' => $date_from . '...' . $date_to . ' 23:59:59',
+			'type'       => 'shop_order',
+			'status'     => array( 'wc-completed', 'wc-processing' ),
+			'limit'      => 500,
+			'orderby'    => 'date',
+			'order'      => 'DESC',
+			'date_after' => $date_from . ' 00:00:00',
+			'date_before' => $date_to . ' 23:59:59',
 		);
 
 		$orders = wc_get_orders( $args );
@@ -1696,10 +1697,6 @@ class WC_Margin_Calculator_Pro {
 
 		foreach ( $orders as $order ) {
 			$data = $this->calculate_order_margin( $order );
-
-			if ( is_null( $data ) ) {
-				continue;
-			}
 
 			$order_number = $order->get_order_number();
 			$edit_url     = $order->get_edit_order_url();
@@ -1709,10 +1706,27 @@ class WC_Margin_Calculator_Pro {
 				$customer = $order->get_billing_email();
 			}
 
+			$date_created = $order->get_date_created();
+			$date_display = $date_created ? $date_created->date_i18n( get_option( 'date_format' ) ) : '';
+
+			if ( is_null( $data ) ) {
+				$rows[] = array(
+					'order_number' => $order_number,
+					'edit_url'     => $edit_url,
+					'date'         => $date_display,
+					'customer'     => $customer,
+					'revenue'      => floatval( $order->get_total() ),
+					'cost'         => 0,
+					'profit'       => 0,
+					'margin'       => null,
+				);
+				continue;
+			}
+
 			$rows[] = array(
 				'order_number' => $order_number,
 				'edit_url'     => $edit_url,
-				'date'         => $order->get_date_created()->date_i18n( get_option( 'date_format' ) ),
+				'date'         => $date_display,
 				'customer'     => $customer,
 				'revenue'      => $data['revenue'],
 				'cost'         => $data['cost'],

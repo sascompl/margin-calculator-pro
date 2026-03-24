@@ -23,7 +23,14 @@ jQuery(document).ready(function ($) {
 			success: function (response) {
 				$('#wcmc-report-loading').hide()
 
-				if (!response.success || response.data.total_orders === 0) {
+				if (!response.success) {
+					$('#wcmc-report-empty')
+						.text(response.data || 'Error loading report.')
+						.show()
+					return
+				}
+
+				if (response.data.total_orders === 0) {
 					$('#wcmc-report-empty').show()
 					return
 				}
@@ -50,9 +57,32 @@ jQuery(document).ready(function ($) {
 				var $tbody = $('#wcmc-report-tbody').empty()
 
 				$.each(d.orders, function (i, row) {
-					var marginColor =
-						row.margin >= 30 ? '#4CAF50' : row.margin >= 15 ? '#FB8C00' : '#C62828'
-					var profitColor = row.profit >= 0 ? '#4CAF50' : '#C62828'
+					var marginCell, profitCell
+
+					if (row.margin === null) {
+						marginCell = '<td style="color:#999;">&#8212;</td>'
+						profitCell = '<td style="color:#999;">&#8212;</td>'
+					} else {
+						var marginColor =
+							row.margin >= 30
+								? '#4CAF50'
+								: row.margin >= 15
+									? '#FB8C00'
+									: '#C62828'
+						var profitColor = row.profit >= 0 ? '#4CAF50' : '#C62828'
+						marginCell =
+							'<td style="color:' +
+							marginColor +
+							';font-weight:700;font-size:14px;">' +
+							row.margin +
+							'%</td>'
+						profitCell =
+							'<td style="color:' +
+							profitColor +
+							';font-weight:600;">' +
+							formatMoney(row.profit, sym) +
+							'</td>'
+					}
 
 					$tbody.append(
 						'<tr>' +
@@ -71,27 +101,21 @@ jQuery(document).ready(function ($) {
 							formatMoney(row.revenue, sym) +
 							'</td>' +
 							'<td>' +
-							formatMoney(row.cost, sym) +
+							(row.cost > 0 ? formatMoney(row.cost, sym) : '<span style="color:#999;">&#8212;</span>') +
 							'</td>' +
-							'<td style="color:' +
-							profitColor +
-							';font-weight:600;">' +
-							formatMoney(row.profit, sym) +
-							'</td>' +
-							'<td style="color:' +
-							marginColor +
-							';font-weight:700;font-size:14px;">' +
-							row.margin +
-							'%</td>' +
+							profitCell +
+							marginCell +
 							'</tr>'
 					)
 				})
 
 				$('#wcmc-report-results').show()
 			},
-			error: function () {
+			error: function (xhr, status, error) {
 				$('#wcmc-report-loading').hide()
-				$('#wcmc-report-empty').text('Error loading report.').show()
+				$('#wcmc-report-empty')
+					.text('Error: ' + (error || 'Connection failed'))
+					.show()
 			},
 		})
 	}
@@ -99,7 +123,12 @@ jQuery(document).ready(function ($) {
 	function getMonthRange(year, month) {
 		var from = year + '-' + String(month).padStart(2, '0') + '-01'
 		var lastDay = new Date(year, month, 0).getDate()
-		var to = year + '-' + String(month).padStart(2, '0') + '-' + String(lastDay).padStart(2, '0')
+		var to =
+			year +
+			'-' +
+			String(month).padStart(2, '0') +
+			'-' +
+			String(lastDay).padStart(2, '0')
 		return { from: from, to: to }
 	}
 
@@ -125,7 +154,7 @@ jQuery(document).ready(function ($) {
 		$(this).addClass('active')
 
 		var now = new Date()
-		var prevMonth = now.getMonth() // 0-based, so this is previous month
+		var prevMonth = now.getMonth() // 0-based = previous month
 		var prevYear = now.getFullYear()
 		if (prevMonth === 0) {
 			prevMonth = 12
