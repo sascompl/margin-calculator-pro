@@ -336,3 +336,12 @@ msgstr "Klient"
 
 msgid "Cost"
 msgstr "Koszt"
+
+msgid "Order Margins - Current Month"
+msgstr "Marże zamówień - bieżący miesiąc"
+
+msgid "No orders with margin data this month."
+msgstr "Brak zamówień z danymi marży w tym miesiącu."
+
+msgid "View full report"
+msgstr "Zobacz pełny raport"

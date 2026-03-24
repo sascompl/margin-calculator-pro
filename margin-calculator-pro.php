@@ -807,6 +807,133 @@ class WC_Margin_Calculator_Pro {
 			esc_html__( 'Product Margins', 'margin-calculator-pro' ),
 			array( $this, 'display_dashboard_widget' )
 		);
+		wp_add_dashboard_widget(
+			'wcmc_orders_widget',
+			esc_html__( 'Order Margins - Current Month', 'margin-calculator-pro' ),
+			array( $this, 'display_orders_dashboard_widget' )
+		);
+	}
+
+	public function display_orders_dashboard_widget() {
+		if ( ! current_user_can( 'manage_woocommerce' ) ) {
+			return;
+		}
+
+		$date_from = gmdate( 'Y-m-01' ) . ' 00:00:00';
+		$date_to   = gmdate( 'Y-m-d' ) . ' 23:59:59';
+
+		$orders = wc_get_orders( array(
+			'type'        => 'shop_order',
+			'status'      => array( 'wc-completed', 'wc-processing' ),
+			'limit'       => 500,
+			'date_after'  => $date_from,
+			'date_before' => $date_to,
+		) );
+
+		$total_revenue = 0;
+		$total_cost    = 0;
+		$order_count   = 0;
+		$lowest_order  = null;
+		$highest_order = null;
+
+		foreach ( $orders as $order ) {
+			$data = $this->calculate_order_margin( $order );
+			if ( is_null( $data ) ) {
+				continue;
+			}
+			$order_count++;
+			$total_revenue += $data['revenue'];
+			$total_cost    += $data['cost'];
+
+			if ( is_null( $lowest_order ) || $data['margin'] < $lowest_order['margin'] ) {
+				$lowest_order = array(
+					'number' => $order->get_order_number(),
+					'url'    => $order->get_edit_order_url(),
+					'margin' => $data['margin'],
+				);
+			}
+			if ( is_null( $highest_order ) || $data['margin'] > $highest_order['margin'] ) {
+				$highest_order = array(
+					'number' => $order->get_order_number(),
+					'url'    => $order->get_edit_order_url(),
+					'margin' => $data['margin'],
+				);
+			}
+		}
+
+		$total_profit = $total_revenue - $total_cost;
+		$avg_margin   = $total_revenue > 0 ? round( ( $total_profit / $total_revenue ) * 100, 2 ) : 0;
+
+		$margin_color = $avg_margin >= 30 ? '#4CAF50' : ( $avg_margin >= 15 ? '#FB8C00' : '#C62828' );
+		$profit_color = $total_profit >= 0 ? '#4CAF50' : '#C62828';
+		?>
+		<style>
+			.wcmc-ow-cards { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+			.wcmc-ow-card { flex: 1; min-width: 100px; background: #f9f9f9; border: 1px solid #e5e5e5; padding: 10px; text-align: center; border-radius: 4px; }
+			.wcmc-ow-card .wcmc-ow-label { font-size: 11px; color: #666; margin-bottom: 4px; }
+			.wcmc-ow-card .wcmc-ow-value { font-size: 18px; font-weight: 700; }
+			.wcmc-ow-extremes { display: flex; gap: 10px; }
+			.wcmc-ow-extremes > div { flex: 1; padding: 8px; background: #f9f9f9; border: 1px solid #e5e5e5; border-radius: 4px; font-size: 13px; }
+		</style>
+
+		<?php if ( 0 === $order_count ) : ?>
+			<p style="color:#999;"><?php esc_html_e( 'No orders with margin data this month.', 'margin-calculator-pro' ); ?></p>
+		<?php else : ?>
+			<div class="wcmc-ow-cards">
+				<div class="wcmc-ow-card">
+					<div class="wcmc-ow-label"><?php esc_html_e( 'Orders', 'margin-calculator-pro' ); ?></div>
+					<div class="wcmc-ow-value"><?php echo esc_html( $order_count ); ?></div>
+				</div>
+				<div class="wcmc-ow-card">
+					<div class="wcmc-ow-label"><?php esc_html_e( 'Profit', 'margin-calculator-pro' ); ?></div>
+					<div class="wcmc-ow-value" style="color:<?php echo esc_attr( $profit_color ); ?>">
+						<?php echo wp_kses_post( wc_price( $total_profit ) ); ?>
+					</div>
+				</div>
+				<div class="wcmc-ow-card">
+					<div class="wcmc-ow-label"><?php esc_html_e( 'Average margin', 'margin-calculator-pro' ); ?></div>
+					<div class="wcmc-ow-value" style="color:<?php echo esc_attr( $margin_color ); ?>">
+						<?php echo esc_html( $avg_margin ); ?>%
+					</div>
+				</div>
+			</div>
+			<div class="wcmc-ow-cards">
+				<div class="wcmc-ow-card">
+					<div class="wcmc-ow-label"><?php esc_html_e( 'Net revenue', 'margin-calculator-pro' ); ?></div>
+					<div class="wcmc-ow-value" style="font-size:14px;"><?php echo wp_kses_post( wc_price( $total_revenue ) ); ?></div>
+				</div>
+				<div class="wcmc-ow-card">
+					<div class="wcmc-ow-label"><?php esc_html_e( 'Total cost', 'margin-calculator-pro' ); ?></div>
+					<div class="wcmc-ow-value" style="font-size:14px;"><?php echo wp_kses_post( wc_price( $total_cost ) ); ?></div>
+				</div>
+			</div>
+
+			<?php if ( $lowest_order && $highest_order ) : ?>
+				<div class="wcmc-ow-extremes">
+					<div>
+						<?php esc_html_e( 'Lowest', 'margin-calculator-pro' ); ?>:
+						<a href="<?php echo esc_url( $lowest_order['url'] ); ?>">
+							#<?php echo esc_html( $lowest_order['number'] ); ?>
+						</a>
+						<strong style="color:#C62828;"><?php echo esc_html( $lowest_order['margin'] ); ?>%</strong>
+					</div>
+					<div>
+						<?php esc_html_e( 'Highest', 'margin-calculator-pro' ); ?>:
+						<a href="<?php echo esc_url( $highest_order['url'] ); ?>">
+							#<?php echo esc_html( $highest_order['number'] ); ?>
+						</a>
+						<strong style="color:#4CAF50;"><?php echo esc_html( $highest_order['margin'] ); ?>%</strong>
+					</div>
+				</div>
+			<?php endif; ?>
+
+			<p style="margin:10px 0 0; text-align:right;">
+				<a href="<?php echo esc_url( admin_url( 'admin.php?page=wcmc-margin-reports' ) ); ?>">
+					<?php esc_html_e( 'View full report', 'margin-calculator-pro' ); ?> &rarr;
+				</a>
+			</p>
+		<?php endif; ?>
+		<?php
 	}
 
 	public function display_dashboard_widget() {
