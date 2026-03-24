@@ -1,9 +1,15 @@
 jQuery(document).ready(function ($) {
+	function decodeHtml(html) {
+		var txt = document.createElement('textarea')
+		txt.innerHTML = html
+		return txt.value
+	}
+
 	function formatMoney(amount, symbol) {
 		var formatted = parseFloat(amount)
 			.toFixed(2)
 			.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
-		return formatted + ' ' + symbol
+		return formatted + ' ' + decodeHtml(symbol)
 	}
 
 	function loadReport(dateFrom, dateTo) {
