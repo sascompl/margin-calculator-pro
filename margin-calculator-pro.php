@@ -1543,6 +1543,11 @@ class WC_Margin_Calculator_Pro {
 				.wcmc-card .wcmc-card-value.neutral { color: #333; }
 				.wcmc-report-table { width: 100%; border-collapse: collapse; background: #fff; }
 				.wcmc-report-table th { background: #f0f0f1; padding: 10px 12px; text-align: left; font-weight: 600; border-bottom: 1px solid #ccd0d4; }
+				.wcmc-sortable { cursor: pointer; user-select: none; }
+				.wcmc-sortable:hover { background: #e5e5e5; }
+				.wcmc-sortable::after { content: '\25B2\25BC'; font-size: 9px; margin-left: 5px; color: #999; letter-spacing: -2px; }
+				.wcmc-sortable.wcmc-sort-asc::after { content: '\25B2'; color: #2271b1; letter-spacing: 0; }
+				.wcmc-sortable.wcmc-sort-desc::after { content: '\25BC'; color: #2271b1; letter-spacing: 0; }
 				.wcmc-report-table td { padding: 10px 12px; border-bottom: 1px solid #f0f0f1; }
 				.wcmc-report-table tr:hover td { background: #f9f9f9; }
 				#wcmc-report-loading { display: none; padding: 20px; text-align: center; color: #666; }
@@ -1629,8 +1634,8 @@ class WC_Margin_Calculator_Pro {
 							<th><?php esc_html_e( 'Customer', 'margin-calculator-pro' ); ?></th>
 							<th><?php esc_html_e( 'Net revenue', 'margin-calculator-pro' ); ?></th>
 							<th><?php esc_html_e( 'Cost', 'margin-calculator-pro' ); ?></th>
-							<th><?php esc_html_e( 'Profit', 'margin-calculator-pro' ); ?></th>
-							<th><?php esc_html_e( 'Margin', 'margin-calculator-pro' ); ?></th>
+							<th class="wcmc-sortable" data-sort="profit"><?php esc_html_e( 'Profit', 'margin-calculator-pro' ); ?></th>
+							<th class="wcmc-sortable" data-sort="margin"><?php esc_html_e( 'Margin', 'margin-calculator-pro' ); ?></th>
 						</tr>
 					</thead>
 					<tbody id="wcmc-report-tbody"></tbody>

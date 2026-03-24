@@ -1,4 +1,8 @@
 jQuery(document).ready(function ($) {
+	var reportData = null
+	var reportCurrency = ''
+	var currentSort = { key: null, dir: 'desc' }
+
 	function decodeHtml(html) {
 		var txt = document.createElement('textarea')
 		txt.innerHTML = html
@@ -12,10 +16,97 @@ jQuery(document).ready(function ($) {
 		return formatted + ' ' + decodeHtml(symbol)
 	}
 
+	function renderRows(orders, sym) {
+		var $tbody = $('#wcmc-report-tbody').empty()
+
+		$.each(orders, function (i, row) {
+			var marginCell, profitCell
+
+			if (row.margin === null) {
+				marginCell = '<td style="color:#999;">&#8212;</td>'
+				profitCell = '<td style="color:#999;">&#8212;</td>'
+			} else {
+				var marginColor =
+					row.margin >= 30
+						? '#4CAF50'
+						: row.margin >= 15
+							? '#FB8C00'
+							: '#C62828'
+				var profitColor = row.profit >= 0 ? '#4CAF50' : '#C62828'
+				marginCell =
+					'<td style="color:' +
+					marginColor +
+					';font-weight:700;font-size:14px;">' +
+					row.margin +
+					'%</td>'
+				profitCell =
+					'<td style="color:' +
+					profitColor +
+					';font-weight:600;">' +
+					formatMoney(row.profit, sym) +
+					'</td>'
+			}
+
+			$tbody.append(
+				'<tr>' +
+					'<td><a href="' +
+					row.edit_url +
+					'">#' +
+					row.order_number +
+					'</a></td>' +
+					'<td>' +
+					row.date +
+					'</td>' +
+					'<td>' +
+					$('<span>').text(row.customer).html() +
+					'</td>' +
+					'<td>' +
+					formatMoney(row.revenue, sym) +
+					'</td>' +
+					'<td>' +
+					(row.cost > 0
+						? formatMoney(row.cost, sym)
+						: '<span style="color:#999;">&#8212;</span>') +
+					'</td>' +
+					profitCell +
+					marginCell +
+					'</tr>'
+			)
+		})
+	}
+
+	function sortOrders(key) {
+		if (!reportData) return
+
+		if (currentSort.key === key) {
+			currentSort.dir = currentSort.dir === 'desc' ? 'asc' : 'desc'
+		} else {
+			currentSort.key = key
+			currentSort.dir = 'desc'
+		}
+
+		reportData.sort(function (a, b) {
+			var valA = a[key] === null ? -Infinity : a[key]
+			var valB = b[key] === null ? -Infinity : b[key]
+			return currentSort.dir === 'desc' ? valB - valA : valA - valB
+		})
+
+		// Update sort indicators
+		$('.wcmc-sortable').removeClass('wcmc-sort-asc wcmc-sort-desc')
+		$('.wcmc-sortable[data-sort="' + key + '"]').addClass(
+			currentSort.dir === 'desc' ? 'wcmc-sort-desc' : 'wcmc-sort-asc'
+		)
+
+		renderRows(reportData, reportCurrency)
+	}
+
 	function loadReport(dateFrom, dateTo) {
 		$('#wcmc-report-results').hide()
 		$('#wcmc-report-empty').hide()
 		$('#wcmc-report-loading').show()
+		reportData = null
+		currentSort = { key: null, dir: 'desc' }
+		$('.wcmc-sortable').removeClass('wcmc-sort-asc wcmc-sort-desc')
 
 		$.ajax({
 			url: wcmc.ajax_url,
@@ -44,6 +135,9 @@ jQuery(document).ready(function ($) {
 				var d = response.data
 				var sym = d.currency
 
+				reportData = d.orders
+				reportCurrency = sym
+
 				$('#wcmc-total-orders').text(d.total_orders)
 				$('#wcmc-total-revenue').text(formatMoney(d.total_revenue, sym))
 				$('#wcmc-total-cost').text(formatMoney(d.total_cost, sym))
@@ -60,61 +154,7 @@ jQuery(document).ready(function ($) {
 					.removeClass('positive negative')
 					.addClass(d.avg_margin >= 0 ? 'positive' : 'negative')
 
-				var $tbody = $('#wcmc-report-tbody').empty()
-
-				$.each(d.orders, function (i, row) {
-					var marginCell, profitCell
-
-					if (row.margin === null) {
-						marginCell = '<td style="color:#999;">&#8212;</td>'
-						profitCell = '<td style="color:#999;">&#8212;</td>'
-					} else {
-						var marginColor =
-							row.margin >= 30
-								? '#4CAF50'
-								: row.margin >= 15
-									? '#FB8C00'
-									: '#C62828'
-						var profitColor = row.profit >= 0 ? '#4CAF50' : '#C62828'
-						marginCell =
-							'<td style="color:' +
-							marginColor +
-							';font-weight:700;font-size:14px;">' +
-							row.margin +
-							'%</td>'
-						profitCell =
-							'<td style="color:' +
-							profitColor +
-							';font-weight:600;">' +
-							formatMoney(row.profit, sym) +
-							'</td>'
-					}
-
-					$tbody.append(
-						'<tr>' +
-							'<td><a href="' +
-							row.edit_url +
-							'">#' +
-							row.order_number +
-							'</a></td>' +
-							'<td>' +
-							row.date +
-							'</td>' +
-							'<td>' +
-							$('<span>').text(row.customer).html() +
-							'</td>' +
-							'<td>' +
-							formatMoney(row.revenue, sym) +
-							'</td>' +
-							'<td>' +
-							(row.cost > 0 ? formatMoney(row.cost, sym) : '<span style="color:#999;">&#8212;</span>') +
-							'</td>' +
-							profitCell +
-							marginCell +
-							'</tr>'
-					)
-				})
-
+				renderRows(reportData, sym)
 				$('#wcmc-report-results').show()
 			},
 			error: function (xhr, status, error) {
@@ -125,6 +165,11 @@ jQuery(document).ready(function ($) {
 			},
 		})
 	}
+
+	// Sort on header click
+	$(document).on('click', '.wcmc-sortable', function () {
+		sortOrders($(this).data('sort'))
+	})
 
 	function getMonthRange(year, month) {
 		var from = year + '-' + String(month).padStart(2, '0') + '-01'
