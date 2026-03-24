@@ -1529,13 +1529,11 @@ class WC_Margin_Calculator_Pro {
 			<h1><?php esc_html_e( 'Margin Reports', 'margin-calculator-pro' ); ?></h1>
 
 			<style>
-				.wcmc-report-filters { background: #fff; padding: 20px; border: 1px solid #ccd0d4; margin-bottom: 20px; }
-				.wcmc-filter-row { display: flex; gap: 15px; align-items: flex-end; flex-wrap: wrap; margin-bottom: 15px; }
-				.wcmc-filter-group { display: flex; flex-direction: column; gap: 4px; }
-				.wcmc-filter-group label { font-weight: 600; font-size: 13px; }
-				.wcmc-quick-filters { display: flex; gap: 8px; margin-bottom: 15px; }
-				.wcmc-quick-filters .button { min-width: 130px; text-align: center; }
-				.wcmc-quick-filters .button.active { background: #2271b1; color: #fff; border-color: #2271b1; }
+				.wcmc-report-filters { background: #fff; padding: 15px 20px; border: 1px solid #ccd0d4; margin-bottom: 20px; }
+				.wcmc-filter-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+				.wcmc-filter-row label { font-weight: 600; font-size: 13px; }
+				.wcmc-filter-separator { color: #ccd0d4; font-size: 18px; margin: 0 2px; }
+				.wcmc-quick-filter.active { background: #2271b1; color: #fff; border-color: #2271b1; }
 				.wcmc-summary-cards { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
 				.wcmc-card { background: #fff; border: 1px solid #ccd0d4; padding: 15px 20px; min-width: 180px; flex: 1; }
 				.wcmc-card h3 { margin: 0 0 5px; font-size: 13px; color: #666; font-weight: normal; }
@@ -1552,59 +1550,41 @@ class WC_Margin_Calculator_Pro {
 			</style>
 
 			<div class="wcmc-report-filters">
-				<h2 style="margin-top:0;"><?php esc_html_e( 'Date range', 'margin-calculator-pro' ); ?></h2>
-
-				<div class="wcmc-quick-filters">
+				<div class="wcmc-filter-row">
 					<button type="button" class="button wcmc-quick-filter" data-filter="current_month">
 						<?php esc_html_e( 'Current month', 'margin-calculator-pro' ); ?>
 					</button>
 					<button type="button" class="button wcmc-quick-filter" data-filter="previous_month">
 						<?php esc_html_e( 'Previous month', 'margin-calculator-pro' ); ?>
 					</button>
-				</div>
 
-				<div class="wcmc-filter-row">
-					<div class="wcmc-filter-group">
-						<label for="wcmc-month"><?php esc_html_e( 'Month', 'margin-calculator-pro' ); ?></label>
-						<select id="wcmc-month">
-							<?php foreach ( $months as $num => $name ) : ?>
-								<option value="<?php echo esc_attr( $num ); ?>" <?php selected( $num, $current_month ); ?>>
-									<?php echo esc_html( $name ); ?>
-								</option>
-							<?php endforeach; ?>
-						</select>
-					</div>
-					<div class="wcmc-filter-group">
-						<label for="wcmc-year"><?php esc_html_e( 'Year', 'margin-calculator-pro' ); ?></label>
-						<select id="wcmc-year">
-							<?php for ( $y = $current_year; $y >= 2026; $y-- ) : ?>
-								<option value="<?php echo esc_attr( $y ); ?>"><?php echo esc_html( $y ); ?></option>
-							<?php endfor; ?>
-						</select>
-					</div>
-					<div>
-						<button type="button" class="button button-primary" id="wcmc-apply-month">
-							<?php esc_html_e( 'Show', 'margin-calculator-pro' ); ?>
-						</button>
-					</div>
-				</div>
+					<span class="wcmc-filter-separator">|</span>
 
-				<hr style="margin: 15px 0;">
+					<select id="wcmc-month">
+						<?php foreach ( $months as $num => $name ) : ?>
+							<option value="<?php echo esc_attr( $num ); ?>" <?php selected( $num, $current_month ); ?>>
+								<?php echo esc_html( $name ); ?>
+							</option>
+						<?php endforeach; ?>
+					</select>
+					<select id="wcmc-year">
+						<?php for ( $y = $current_year; $y >= 2026; $y-- ) : ?>
+							<option value="<?php echo esc_attr( $y ); ?>"><?php echo esc_html( $y ); ?></option>
+						<?php endfor; ?>
+					</select>
+					<button type="button" class="button button-primary" id="wcmc-apply-month">
+						<?php esc_html_e( 'Show', 'margin-calculator-pro' ); ?>
+					</button>
 
-				<div class="wcmc-filter-row">
-					<div class="wcmc-filter-group">
-						<label for="wcmc-date-from"><?php esc_html_e( 'From', 'margin-calculator-pro' ); ?></label>
-						<input type="date" id="wcmc-date-from" value="<?php echo esc_attr( gmdate( 'Y-m-01' ) ); ?>">
-					</div>
-					<div class="wcmc-filter-group">
-						<label for="wcmc-date-to"><?php esc_html_e( 'To', 'margin-calculator-pro' ); ?></label>
-						<input type="date" id="wcmc-date-to" value="<?php echo esc_attr( gmdate( 'Y-m-d' ) ); ?>">
-					</div>
-					<div>
-						<button type="button" class="button button-primary" id="wcmc-apply-range">
-							<?php esc_html_e( 'Show', 'margin-calculator-pro' ); ?>
-						</button>
-					</div>
+					<span class="wcmc-filter-separator">|</span>
+
+					<label for="wcmc-date-from"><?php esc_html_e( 'From', 'margin-calculator-pro' ); ?></label>
+					<input type="date" id="wcmc-date-from" value="<?php echo esc_attr( gmdate( 'Y-m-01' ) ); ?>">
+					<label for="wcmc-date-to"><?php esc_html_e( 'To', 'margin-calculator-pro' ); ?></label>
+					<input type="date" id="wcmc-date-to" value="<?php echo esc_attr( gmdate( 'Y-m-d' ) ); ?>">
+					<button type="button" class="button button-primary" id="wcmc-apply-range">
+						<?php esc_html_e( 'Show', 'margin-calculator-pro' ); ?>
+					</button>
 				</div>
 			</div>
 
