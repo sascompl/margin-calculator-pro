@@ -198,7 +198,7 @@ class Mcpro_Margin_Calculator {
 		wp_enqueue_style( 'mcpro-admin-style', plugin_dir_url( __FILE__ ) . 'assets/admin-style.css', array(), '1.5.0' );
 
 		if ( 'edit.php' === $hook || 'post.php' === $hook || 'post-new.php' === $hook ) {
-			wp_enqueue_script( 'mcpro-admin', plugin_dir_url( __FILE__ ) . 'assets/admin.js', array( 'jquery' ), '1.0.2', true );
+			wp_enqueue_script( 'mcpro-admin', plugin_dir_url( __FILE__ ) . 'assets/admin.js', array( 'jquery' ), '1.5.0', true );
 			wp_localize_script( 'mcpro-admin', 'mcpro', array(
 				'ajax_url' => admin_url( 'admin-ajax.php' ),
 				'nonce'    => wp_create_nonce( 'mcpro_nonce' ),
@@ -208,7 +208,7 @@ class Mcpro_Margin_Calculator {
 		$page = isset( $_GET['page'] ) ? sanitize_key( $_GET['page'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 
 		if ( 'margin-calculator-pro' === $page ) {
-			wp_enqueue_script( 'mcpro-admin', plugin_dir_url( __FILE__ ) . 'assets/admin.js', array( 'jquery', 'jquery-ui-core' ), '1.0.2', true );
+			wp_enqueue_script( 'mcpro-admin', plugin_dir_url( __FILE__ ) . 'assets/admin.js', array( 'jquery', 'jquery-ui-core' ), '1.5.0', true );
 			wp_localize_script( 'mcpro-admin', 'mcpro', array(
 				'ajax_url' => admin_url( 'admin-ajax.php' ),
 				'nonce'    => wp_create_nonce( 'mcpro_nonce' ),
@@ -216,7 +216,7 @@ class Mcpro_Margin_Calculator {
 		}
 
 		if ( 'mcpro-margin-reports' === $page ) {
-			wp_enqueue_script( 'mcpro-reports', plugin_dir_url( __FILE__ ) . 'assets/reports.js', array( 'jquery' ), '1.0.0', true );
+			wp_enqueue_script( 'mcpro-reports', plugin_dir_url( __FILE__ ) . 'assets/reports.js', array( 'jquery' ), '1.5.0', true );
 			wp_localize_script( 'mcpro-reports', 'mcpro', array(
 				'ajax_url' => admin_url( 'admin-ajax.php' ),
 				'nonce'    => wp_create_nonce( 'mcpro_nonce' ),
